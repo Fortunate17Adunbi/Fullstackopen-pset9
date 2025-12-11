@@ -19,10 +19,10 @@ const parseArgument = (args: string[]): Metric => {
   };
 };
 
-const calculateBmi = (height: number, weight: number): BMI => {
-  const heightInmEters = height / 100;
-  const result = weight / (heightInmEters * heightInmEters);
-  console.log("result ", result);
+export const calculateBmi = (height: number, weight: number): BMI => {
+  const heightInMeters = height / 100;
+  const result = weight / (heightInMeters * heightInMeters);
+  // console.log("result ", result);
   if (result < 18.5) {
     return "Underweight";
   } else if (result < 25) {
@@ -34,13 +34,15 @@ const calculateBmi = (height: number, weight: number): BMI => {
   }
 };
 
-try {
-  const { weight, height } = parseArgument(process.argv);
-  console.log(calculateBmi(height, weight));
-} catch (error: unknown) {
-  let errorMessage = "Something went wrong.";
-  if (error instanceof Error) {
-    errorMessage += error.message;
+if (require.main === module) {
+  try {
+    const { weight, height } = parseArgument(process.argv);
+    console.log(calculateBmi(height, weight));
+  } catch (error: unknown) {
+    let errorMessage = "Something went wrong.";
+    if (error instanceof Error) {
+      errorMessage += error.message;
+    }
+    console.log(errorMessage);
   }
-  console.log(errorMessage);
 }
