@@ -1,5 +1,5 @@
 export const parseData = (args: string[]): number[] => {
-  let data = [];
+  const data = [];
   for (let i = 2; i < args.length; i++) {
     data.push(Number(args[i]));
   }

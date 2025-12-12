@@ -31,7 +31,7 @@ interface ExcersiseReview {
   average: number;
 }
 
-const calculateExercises = (
+export const calculateExercises = (
   hoursPerDay: number[],
   target: number
 ): ExcersiseReview => {
@@ -68,14 +68,16 @@ const calculateExercises = (
   };
 };
 
-try {
-  const { target, hoursPerDay } = parseArgument(process.argv);
-  console.log(`Target: ${target}, Hours Per Day: ${hoursPerDay}`);
-  console.log(calculateExercises(hoursPerDay, target));
-} catch (error: unknown) {
-  let errorMessage = "Something went wrong.";
-  if (error instanceof Error) {
-    errorMessage += error.message;
+if (require.main === module) {
+  try {
+    const { target, hoursPerDay } = parseArgument(process.argv);
+    console.log(`Target: ${target}, Hours Per Day: ${hoursPerDay}`);
+    console.log(calculateExercises(hoursPerDay, target));
+  } catch (error: unknown) {
+    let errorMessage = "Something went wrong.";
+    if (error instanceof Error) {
+      errorMessage += error.message;
+    }
+    console.log(errorMessage);
   }
-  console.log(errorMessage);
 }
