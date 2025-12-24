@@ -1,0 +1,14 @@
+GET http://localhost:3001/api/patients
+
+###
+
+POST http://localhost:3001/api/patients
+Content-Type: application/json
+
+{
+  "name": "Jon Grey",
+  "dateOfBirth": "1999-04-18",
+  "ssn": "323275-43IO",
+  "gender": "female",
+  "occupation": "Teacher"
+}
